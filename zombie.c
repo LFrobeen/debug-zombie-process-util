@@ -6,7 +6,7 @@
 int main ()
 {
   
-  while (true) {
+  while (1) {
     printf("Starting new process...");
     
     pid_t child_pid;child_pid = fork ();
