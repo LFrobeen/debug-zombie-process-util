@@ -9,7 +9,7 @@ int main ()
   while (1) {
     printf("Starting new process...\n");
     
-    pid_t child_pid;child_pid = fork ();
+    pid_t child_pid = fork ();
     
     if (child_pid == 0) {
       break; 
