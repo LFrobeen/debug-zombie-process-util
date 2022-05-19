@@ -11,12 +11,11 @@ int main ()
     
     pid_t child_pid;child_pid = fork ();
     
-    if (child_pid > 0) {
-      sleep(1);
+    if (child_pid == 0) {
+      break; 
     }
-    else {
-      break;    
-    }
+    
+    sleep(1);
   }
   
   exit (0);
