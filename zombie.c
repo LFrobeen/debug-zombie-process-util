@@ -5,20 +5,19 @@
 
 int main ()
 {
-  
   while (1) {
     printf("Starting new process...\n");
     
     pid_t child_pid = fork ();
     
     if (child_pid == 0) {
-      break; 
+      exit (0);
+      return 0;
     }
     
-    sleep(1);
+    sleep(10);
   }
   
   exit (0);
-  
   return 0;
 }
