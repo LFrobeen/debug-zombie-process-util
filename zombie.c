@@ -15,9 +15,11 @@ int main ()
       sleep(1);
     }
     else {
-      exit (0);
+      break;    
     }
   }
+  
+  exit (0);
   
   return 0;
 }
