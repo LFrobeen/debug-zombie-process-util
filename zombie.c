@@ -3,23 +3,44 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main ()
-{
-  while (1) {
-    printf("Starting new process...\n");
-    
-    // Spawns a zombie spawner
-    pid_t child_pid = fork ();
-    
-    if (child_pid == 0) {
-      pid_t child_pid = fork ();
-      exit (0);
-      return 0;
+int main (int argc, char *argv[]) {
+    if (argc < 2) {
+        while (1) {
+            spawn_zombie();
+            sleep(1);
+        }
+
+        return 0;
     }
-    
-    sleep(10);
-  }
-  
-  exit (0);
-  return 0;
+
+    if (argc >= 2) {
+        int number = atoi(argv[1]);
+
+        printf("Spawning %d zombies\n", number);
+        for ( ; number > 0; number -= 1 ) {
+            spawn_zombie();
+        }
+    }
+
+    if (argc >= 3) {
+        int number = atoi(argv[2]);
+        printf("Sleep %d\n", number);
+        sleep(number);
+    }
+
+    return 0;
+}
+
+void spawn_zombie() {
+    pid_t child_pid = fork();
+
+    if (child_pid == 0) {
+        // Create sub-zombie
+        pid_t child_pid = fork ();
+
+        // Exit immediately
+        exit (0);
+    } else {
+        printf("Started new process %d\n", child_pid);
+    }
 }
